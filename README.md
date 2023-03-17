@@ -4,6 +4,48 @@
 
 - `npx expo start`
 
-## Initialization Documentation
+## Implementation Documentation
 
+Framework Set Up
 - https://reactnative.dev/docs/environment-setup
+
+React Native + Ethers Context Specific
+- https://docs.ethers.org/v5/cookbook/react-native/
+
+Private Key Storage
+- https://github.com/emeraldsanto/react-native-encrypted-storage
+
+"UUID" for Authentication via Device Info
+- https://www.npmjs.com/package/react-native-device-info?activeTab=versions
+
+## Feature Work
+
+Phase 1
+- User Onboarding
+    - Wallet Management
+        - New Wallet creation
+        - Old Wallet import
+        - store keys on local device via mobile encrypted storage (keychain)
+    - User Authentication-lite
+        - Fetch Device ID for user auth + access to username / wallet record
+        - username
+    - Phase 1.5
+        - Database
+            - username
+            - public key (wallet address)
+            - device id (user can have multiple device id)
+            - phone number?
+            - email?
+
+Phase 2
+- Wallet Interactions
+    - send USDC + pay MATIC to 0x address
+    - name alias look up -> 0x address for payment
+    - dev/test options
+        - Polygon Mumbai
+        - spin up our own Ethereum blockchain fork on VPS for testing purposes
+
+Phase 3
+- Payment UX: make it easy to send USDC
+    - QR Code generation
+    - NFC payment enabled
