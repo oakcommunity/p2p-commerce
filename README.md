@@ -13,7 +13,7 @@ React Native + Ethers Context Specific
 - https://docs.ethers.org/v5/cookbook/react-native/
 
 Private Key Storage
-- https://github.com/emeraldsanto/react-native-encrypted-storage
+- https://docs.expo.dev/versions/latest/sdk/securestore/
 
 "UUID" for Authentication via Device Info
 - https://www.npmjs.com/package/react-native-device-info?activeTab=versions
@@ -22,10 +22,17 @@ Private Key Storage
 
 Phase 1
 - User Onboarding
+    - Mobile App Set Up
+        - navigation + routing
+        - authentication
+        - state management
     - Wallet Management
-        - New Wallet creation
-        - Old Wallet import
-        - store keys on local device via mobile encrypted storage (keychain)
+        - New Wallet creation (in progress)
+            - get user to write down seed phrase
+            - then delete local seed phrase store
+        - Old Wallet import (done)
+        - Delete local wallet store (done)
+        - store keys on local device via mobile encrypted storage (keychain) (done)
     - User Authentication-lite
         - Fetch Device ID for user auth + access to username / wallet record
         - username
