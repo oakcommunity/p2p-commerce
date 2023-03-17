@@ -1,8 +1,10 @@
 # OAK
 
-## Deployment
-
+## Getting Started
+- install expo go on mobile app
+- `npm install`
 - `npx expo start`
+- scan QR code on dev server with camera app/expo go
 
 ## Implementation Documentation
 
