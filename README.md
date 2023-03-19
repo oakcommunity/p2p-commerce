@@ -20,6 +20,9 @@ Private Key Storage
 "UUID" for Authentication via Device Info
 - https://www.npmjs.com/package/react-native-device-info?activeTab=versions
 
+Mobile App Navigation
+- https://reactnavigation.org/docs/hello-react-navigation
+
 ## Feature Work
 
 Phase 1
