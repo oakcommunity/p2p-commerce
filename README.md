@@ -29,8 +29,8 @@ Phase 1
 - User Onboarding
     - Mobile App Set Up
         - navigation + routing
-        - authentication
         - state management
+        - authentication
     - Wallet Management
         - New Wallet creation (in progress)
             - get user to write down seed phrase
@@ -54,8 +54,7 @@ Phase 2
     - send USDC + pay MATIC to 0x address
     - name alias look up -> 0x address for payment
     - dev/test options
-        - Polygon Mumbai
-        - spin up our own Ethereum blockchain fork on VPS for testing purposes
+        - Jesse Pollack will send dev wallet sufficient amount of Goerli ETH (base testnet) + USDC
 
 Phase 3
 - Payment UX: make it easy to send USDC

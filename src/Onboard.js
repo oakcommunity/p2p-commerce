@@ -5,8 +5,6 @@ import "react-native-get-random-values";
 import "@ethersproject/shims";
 import { ethers } from "ethers";
 import * as SecureStore from "expo-secure-store";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 async function save(key, value) {
   console.log("saving: ", key, value);
@@ -34,7 +32,7 @@ async function deleteValueFor(key) {
   }
 }
 
-export default function OnboardScreen() {
+export default function OnboardScreen({ navigation }) {
   const [toAddress, setToAddress] = useState("");
   const [value, setValue] = useState("");
   const [signedTransaction, setSignedTransaction] = useState("");
@@ -114,40 +112,30 @@ export default function OnboardScreen() {
     }
   };
 
-  const HomeScreen = () => {
-    return (
-      <View style={styles.container}>
-        <Text>OAK CURRENCY</Text>
-        <Button title="Create Wallet" onPress={() => configureWallet(false)} />
-        {address !== "" && privateKey !== "" ? (
-          <View>
-            <Text>Address: {address}</Text>
-            <Text>Mnemonic: {mnemonic}</Text>
-          </View>
-        ) : null}
-        <Input
-          label="Seed Phrase"
-          placeholder="Input your Seed Phrase"
-          value={seedPhrase}
-          onChangeText={setSeedPhrase}
-          autoCapitalize="none"
-          secureTextEntry
-        />
-        <Button title="Import Wallet" onPress={() => configureWallet(true)} />
-        <Button title="Delete Wallet" onPress={deleteWallet} />
-        {/* <StatusBar style="auto" /> */}
-      </View>
-    );
-  };
-
-  const Stack = createNativeStackNavigator();
-
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <View style={styles.container}>
+      <Text>OAK CURRENCY</Text>
+      <Button title="Create Wallet" onPress={() => configureWallet(false)} />
+      {address !== "" && privateKey !== "" ? (
+        <View>
+          <Text>Address: {address}</Text>
+          <Text>Mnemonic: {mnemonic}</Text>
+        </View>
+      ) : null}
+      <Input
+        label="Seed Phrase"
+        placeholder="Input your Seed Phrase"
+        value={seedPhrase}
+        onChangeText={setSeedPhrase}
+        autoCapitalize="none"
+        secureTextEntry
+      />
+      <Button title="Import Wallet" onPress={() => configureWallet(true)} />
+      <Button title="Delete Wallet" onPress={deleteWallet} />
+      {/* <StatusBar style="auto" /> */}
+      <Button title="Onboard" onPress={() => navigation.navigate("Onboard")} />
+      <Button title="Wallet" onPress={() => navigation.navigate("Wallet")} />
+    </View>
   );
 }
 

@@ -99,6 +99,8 @@ export default function HomeScreen({ navigation }) {
           <Text>Mnemonic: {mnemonic}</Text>
         </View>
       ) : null}
+      <Button title="Onboard" onPress={() => navigation.navigate("Onboard")} />
+      <Button title="Wallet" onPress={() => navigation.navigate("Wallet")} />
       <Input
         label="Seed Phrase"
         placeholder="Input your Seed Phrase"

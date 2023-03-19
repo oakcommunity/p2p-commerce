@@ -32,7 +32,7 @@ async function deleteValueFor(key) {
   }
 }
 
-export default function WalletScreen() {
+export default function WalletScreen({ navigation }) {
   const [toAddress, setToAddress] = useState("");
   const [value, setValue] = useState("");
   const [signedTransaction, setSignedTransaction] = useState("");
@@ -133,6 +133,8 @@ export default function WalletScreen() {
       <Button title="Import Wallet" onPress={() => configureWallet(true)} />
       <Button title="Delete Wallet" onPress={deleteWallet} />
       {/* <StatusBar style="auto" /> */}
+      <Button title="Onboard" onPress={() => navigation.navigate("Onboard")} />
+      <Button title="Wallet" onPress={() => navigation.navigate("Wallet")} />
     </View>
   );
 }
