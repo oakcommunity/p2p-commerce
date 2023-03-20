@@ -7,8 +7,8 @@ import {
   saveWalletData,
   getWalletData,
   deleteWalletData,
-  isValidSession,
 } from "../../utils/local-storage";
+import { isValidSession } from "../../utils/wallet";
 import { generateWallet } from "../../utils/wallet";
 
 export const fetchSession = createAsyncThunk("users/fetchSession", async () => {

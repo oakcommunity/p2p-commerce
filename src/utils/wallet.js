@@ -28,3 +28,15 @@ export const generateWallet = async (seedPhrase) => {
   }
   return walletData;
 };
+
+export function isValidSession(walletData) {
+  if (
+    !walletData ||
+    walletData.address === "" ||
+    walletData.privateKey === "" ||
+    walletData.mnemonic === ""
+  ) {
+    return false;
+  }
+  return true;
+}

@@ -66,15 +66,3 @@ export async function deleteWalletData() {
   };
   return payload;
 }
-
-export function isValidSession(walletData) {
-  if (
-    !walletData ||
-    walletData.address === "" ||
-    walletData.privateKey === "" ||
-    walletData.mnemonic === ""
-  ) {
-    return false;
-  }
-  return true;
-}

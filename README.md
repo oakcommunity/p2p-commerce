@@ -24,19 +24,25 @@ Mobile App Navigation
 - https://reactnavigation.org/docs/hello-react-navigation
 - https://reactnavigation.org/docs/tab-based-navigation/
 
+State Management
+- https://redux-toolkit.js.org/introduction/getting-started
+
 ## Feature Work
 
 Phase 1
 - User Onboarding
     - Mobile App Set Up
-        - navigation + routing
-        - state management
-        - authentication
+        - navigation + routing (done)
+        - state management (done)
+        - authentication (done)
+        - protected routes (done)
+            - autoroute user to sign in/sign up flow if local wallet record not found
     - Wallet Management
         - New Wallet creation (in progress)
-            - get user to write down seed phrase
-            - then delete local seed phrase store
-        - Old Wallet import (done)
+            - wallet generation (done)
+            - get user to write down seed phrase and delete seed phrase from local store (TODO)
+                - Ben: we should defer this for a potential iCloud backup instead
+        - Wallet Generation from Seed Phrase (done)
         - Delete local wallet store (done)
         - store keys on local device via mobile encrypted storage (keychain) (done)
     - User Authentication-lite
