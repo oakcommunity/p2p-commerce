@@ -22,6 +22,7 @@ Private Key Storage
 
 Mobile App Navigation
 - https://reactnavigation.org/docs/hello-react-navigation
+- https://reactnavigation.org/docs/tab-based-navigation/
 
 ## Feature Work
 
