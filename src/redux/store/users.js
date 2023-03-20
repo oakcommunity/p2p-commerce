@@ -3,30 +3,69 @@ import {
   createEntityAdapter,
   createSlice,
 } from "@reduxjs/toolkit";
+import {
+  saveWalletData,
+  getWalletData,
+  deleteWalletData,
+  isValidSession,
+} from "../../utils/local-storage";
+import { generateWallet } from "../../utils/wallet";
 
-export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
-  const response = await fetch("https://reqres.in/api/users?delay=1");
-  return (await response.json()).data;
+export const fetchSession = createAsyncThunk("users/fetchSession", async () => {
+  // fetch wallet data from encrypted local store
+  const walletData = await getWalletData();
+  return walletData;
 });
 
-export const usersAdapter = createEntityAdapter();
+export const deleteSession = createAsyncThunk(
+  "users/deleteWallet",
+  async () => {
+    // delete wallet data from encrypted local store
+    const walletData = await deleteWalletData();
+    return walletData;
+  }
+);
 
-const usersSlice = createSlice({
+export const createWallet = createAsyncThunk(
+  "users/createWallet",
+  async (seedPhrase) => {
+    // generate wallet
+    const walletData = await generateWallet(seedPhrase);
+    // save to local encrypted local store
+    await saveWalletData(walletData);
+    return walletData;
+  }
+);
+
+export const userAdapter = createEntityAdapter();
+
+const userSlice = createSlice({
   name: "users",
-  initialState: usersAdapter.getInitialState({
+  initialState: userAdapter.getInitialState({
     loading: false,
+    isLoggedIn: false,
+    walletData: { address: "", privateKey: "", mnemonic: "" },
   }),
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchUsers.pending, (state) => {
+    builder.addCase(fetchSession.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(fetchUsers.fulfilled, (state, action) => {
-      usersAdapter.setAll(state, action.payload);
+    builder.addCase(fetchSession.fulfilled, (state, action) => {
+      state.walletData = action.payload;
+      state.isLoggedIn = isValidSession(action.payload);
       state.loading = false;
     });
-    builder.addCase(fetchUsers.rejected, (state) => {
+    builder.addCase(fetchSession.rejected, (state) => {
       state.loading = false;
+    });
+    builder.addCase(deleteSession.fulfilled, (state, action) => {
+      state.walletData = action.payload;
+      state.isLoggedIn = false;
+    });
+    builder.addCase(createWallet.fulfilled, (state, action) => {
+      state.walletData = action.payload;
+      state.isLoggedIn = true;
     });
   },
 });
@@ -37,6 +76,7 @@ export const {
   selectEntities: selectUserEntities,
   selectAll: selectAllUsers,
   selectTotal: selectTotalUsers,
-} = usersAdapter.getSelectors((state) => state.users);
+} = userAdapter.getSelectors((state) => state.walletData);
 
-export default usersSlice.reducer;
+export const { setWalletData } = userSlice.actions;
+export default userSlice.reducer;

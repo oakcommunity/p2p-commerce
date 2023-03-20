@@ -28,7 +28,10 @@ export async function deleteValueFor(key) {
 }
 
 // WALLET STORE UTILITY FUNCTIONS
-export async function saveWalletData(address, privateKey, mnemonic) {
+export async function saveWalletData(walletData) {
+  const address = walletData.address;
+  const privateKey = walletData.privateKey;
+  const mnemonic = walletData.mnemonic;
   await save(ADDRESS, address);
   await save(PRIVATE_KEY, privateKey);
   await save(MNEMONIC, mnemonic);
@@ -37,7 +40,6 @@ export async function saveWalletData(address, privateKey, mnemonic) {
     privateKey: privateKey,
     mnemonic: mnemonic,
   };
-  console.log("WALLET DATA: ", payload);
   return payload;
 }
 
@@ -50,7 +52,6 @@ export async function getWalletData() {
     privateKey: privateKey,
     mnemonic: mnemonic,
   };
-  console.log("WALLET DATA: ", payload);
   return payload;
 }
 
@@ -63,40 +64,17 @@ export async function deleteWalletData() {
     privateKey: privateKey,
     mnemonic: mnemonic,
   };
-  console.log("WALLET DATA: ", payload);
   return payload;
 }
 
-// export async function isValidSession(walletData) {
-//   if (
-//     walletData &&
-//     walletData.address !== "" &&
-//     walletData.mnemonic !== "" &&
-//     walletData.privateKey !== ""
-//   ) {
-//     return true;
-//   }
-//   return false;
-// }
-
-export async function isValidSession(walletData) {
-  if (!walletData) {
-    const address = await getValueFor(ADDRESS);
-    const privateKey = await getValueFor(PRIVATE_KEY);
-    const mnemonic = await getValueFor(MNEMONIC);
-    walletData = {
-      address: address,
-      privateKey: privateKey,
-      mnemonic: mnemonic,
-    };
-  }
+export function isValidSession(walletData) {
   if (
-    walletData &&
-    walletData.address !== "" &&
-    walletData.privateKey !== "" &&
-    walletData.mnemonic !== ""
+    !walletData ||
+    walletData.address === "" ||
+    walletData.privateKey === "" ||
+    walletData.mnemonic === ""
   ) {
-    return true;
+    return false;
   }
-  return false;
+  return true;
 }

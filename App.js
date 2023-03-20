@@ -8,50 +8,52 @@ import WalletScreen from "./src/screens/Wallet";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Provider } from "react-redux";
 import { store } from "./src/redux/store";
-import { useSelector } from "react-redux";
-import { getWalletData, isValidSession } from "./src/utils/local-storage";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSession } from "./src/redux/store/users";
 
-export default function App() {
+export default function AppWrapper() {
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+}
+
+function App() {
+  // navigation
   const Stack = createNativeStackNavigator();
   const Tab = createBottomTabNavigator();
-  // const { isLoggedIn } = useSelector((state) => state.isLoggedIn);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
 
+  // state
+  const dispatch = useDispatch();
+  const { loading, isLoggedIn } = useSelector((state) => state.users);
   useEffect(() => {
-    async function fetchKeys() {
-      setIsLoggedIn(await isValidSession());
-      setIsLoading(false);
-    }
-    fetchKeys();
+    dispatch(fetchSession());
   }, []);
 
-  if (isLoading) {
+  if (loading) {
     return <SplashScreen />;
   } else {
     return (
-      <Provider store={store}>
-        <NavigationContainer>
-          {isLoggedIn ? (
-            <Tab.Navigator>
-              <Tab.Screen name="Home" component={HomeScreen} />
-              <Tab.Screen name="Onboard" component={OnboardScreen} />
-              <Tab.Screen name="Wallet" component={WalletScreen} />
-            </Tab.Navigator>
-          ) : (
-            <Stack.Navigator>
-              <Stack.Screen
-                name="Onboard"
-                component={OnboardScreen}
-                options={{
-                  title: "Sign in",
-                  animationTypeForReplace: "push",
-                }}
-              />
-            </Stack.Navigator>
-          )}
-        </NavigationContainer>
-      </Provider>
+      <NavigationContainer>
+        {isLoggedIn ? (
+          <Tab.Navigator>
+            <Tab.Screen name="Home" component={HomeScreen} />
+            <Tab.Screen name="Wallet" component={WalletScreen} />
+          </Tab.Navigator>
+        ) : (
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Enter OAK Wallet"
+              component={OnboardScreen}
+              options={{
+                title: "Enter OAK Wallet",
+                animationTypeForReplace: "push",
+              }}
+            />
+          </Stack.Navigator>
+        )}
+      </NavigationContainer>
     );
   }
 }
