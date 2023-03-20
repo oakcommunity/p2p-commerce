@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Oak",
-    "slug": "Oak",
+    "name": "OakWalletApp",
+    "slug": "OakWalletApp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,7 +18,8 @@
       "supportsTablet": true,
       "config": {
         "usesNonExemptEncryption": false
-      }
+      },
+      "bundleIdentifier": "com.benkim96.Oak"
     },
     "android": {
       "adaptiveIcon": {
@@ -28,6 +29,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "60e9b403-1329-43c9-bea0-f8b7c6bbdba9"
+      }
     }
   }
 }
