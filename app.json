@@ -25,14 +25,15 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.benkim96.Oak"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "60e9b403-1329-43c9-bea0-f8b7c6bbdba9"
+        "projectId": "8fa520f7-15c6-4289-bfaa-0075fd57b221"
       }
     }
   }
