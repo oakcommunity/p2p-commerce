@@ -34,6 +34,12 @@ Mobile App Navigation
 State Management
 - https://redux-toolkit.js.org/introduction/getting-started
 
+Number Input 'Calulator App'
+- https://github.com/avinashsivaraman/awesome-react-calculator (fork this codebase)
+
+QR Code Scanner
+- https://www.npmjs.com/package/react-native-qrcode-scanner
+
 ## Feature Work
 
 Phase 1
@@ -74,3 +80,14 @@ Phase 3
 - Payment UX: make it easy to send USDC
     - QR Code generation
     - NFC payment enabled
+
+
+## Testing
+
+Testing for iOS is such a pain... my goodness
+
+### IOS only
+- find your device UDID # (https://udid.tech/) (your mobile phone only please)
+- send it to me, I'll register you (I only have 100 slots, non transferrable...) (Ill add you here: https://developer.apple.com/account/resources/devices/add)
+- great, you're now provisioned.
+-   
