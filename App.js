@@ -1,7 +1,7 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import HomeScreen from "./src/Home";
+import HomeScreen from "./src/screens/Home";
 import OnboardScreen from "./src/Onboard";
 import WalletScreen from "./src/Wallet";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
