@@ -5,6 +5,8 @@
 - https://github.com/Uniswap/wallet
 - I spent more than a few hours in their `package.json` figuring out which integrations to use and saving a lot of lead time on implementation details
 
+- Also thanks to GPT-4 for supercharging my dev lifecycle; some of the more mundane/trivial tasks for utility functions, repo layout, set up, and and menial tasks that still contribute a lot to cognitive load were offloaded to GPT. Probably saved me 10-20 hours of dev time.
+
 ## Getting Started
 - install expo go on mobile app, install expo cli
 - `npm install` - install those dependencies
