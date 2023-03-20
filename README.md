@@ -1,9 +1,14 @@
 # OAK
 
+## Thanks
+- Big thanks to uniswap wallet repo and all the hardworking contributors of my favorite project in web3
+- https://github.com/Uniswap/wallet
+- I spent more than a few hours in their `package.json` figuring out which integrations to use and saving a lot of lead time on implementation details
+
 ## Getting Started
-- install expo go on mobile app
-- `npm install`
-- `npx expo start`
+- install expo go on mobile app, install expo cli
+- `npm install` - install those dependencies
+- `npx expo start` - get the dev server running
 - scan QR code on dev server with camera app/expo go
 
 ## Implementation Documentation
