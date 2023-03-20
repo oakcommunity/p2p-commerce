@@ -66,3 +66,37 @@ export async function deleteWalletData() {
   console.log("WALLET DATA: ", payload);
   return payload;
 }
+
+// export async function isValidSession(walletData) {
+//   if (
+//     walletData &&
+//     walletData.address !== "" &&
+//     walletData.mnemonic !== "" &&
+//     walletData.privateKey !== ""
+//   ) {
+//     return true;
+//   }
+//   return false;
+// }
+
+export async function isValidSession(walletData) {
+  if (!walletData) {
+    const address = await getValueFor(ADDRESS);
+    const privateKey = await getValueFor(PRIVATE_KEY);
+    const mnemonic = await getValueFor(MNEMONIC);
+    walletData = {
+      address: address,
+      privateKey: privateKey,
+      mnemonic: mnemonic,
+    };
+  }
+  if (
+    walletData &&
+    walletData.address !== "" &&
+    walletData.privateKey !== "" &&
+    walletData.mnemonic !== ""
+  ) {
+    return true;
+  }
+  return false;
+}

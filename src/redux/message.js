@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const messageSlice = createSlice({
   name: "message",
@@ -6,7 +6,7 @@ const messageSlice = createSlice({
     message: "Initial message",
   },
   reducers: {
-    setMessage(state, action: PayloadAction<string>) {
+    setMessage(state, action) {
       state.message = action.payload;
     },
   },
