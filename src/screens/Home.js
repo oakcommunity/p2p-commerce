@@ -36,11 +36,12 @@ export default function HomeScreen() {
   const [recipientAddress, setRecipientAddress] = useState("");
   const [amount, setAmount] = useState("");
 
+  const fetchBalances = async () => {
+    const fetchedBalances = await getBalances(walletData.address);
+    setBalances(fetchedBalances);
+  };
+
   useEffect(() => {
-    const fetchBalances = async () => {
-      const fetchedBalances = await getBalances(walletData.address);
-      setBalances(fetchedBalances);
-    };
     fetchBalances();
   }, [walletData, walletData.address]);
 
@@ -55,10 +56,25 @@ export default function HomeScreen() {
     );
     const amountInWei = ethers.utils.parseUnits(amount.toString(), 6);
 
-    const transactionResponse = await usdcContract.transfer(
+    const nonce = await wallet.getTransactionCount();
+    const gasPrice = await provider.getGasPrice();
+    const gasLimit = await usdcContract.estimateGas.transfer(
       recipientAddress,
       amountInWei
     );
+
+    const transaction = {
+      to: USDC_CONTRACT_ADDRESS,
+      nonce,
+      gasPrice,
+      gasLimit,
+      data: usdcContract.interface.encodeFunctionData("transfer", [
+        recipientAddress,
+        amountInWei,
+      ]),
+    };
+
+    const transactionResponse = await wallet.sendTransaction(transaction);
     const transactionReceipt = await transactionResponse.wait();
 
     return transactionReceipt;
@@ -84,6 +100,7 @@ export default function HomeScreen() {
         onPress={() => sendUSDCTransaction(recipientAddress, amount)}
         title="Send USDC"
       />
+      <Button onPress={fetchBalances} title="Fetch Balances" />
       {balances && (
         <View style={styles.balances}>
           <Text style={styles.balanceText}>MATIC: {balances.matic}</Text>
