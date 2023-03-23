@@ -71,7 +71,7 @@ Phase 1
 
 Phase 2
 - Wallet Interactions
-    - send USDC + pay MATIC to 0x address
+    - send USDC + pay MATIC to 0x address (done)
     - name alias look up -> 0x address for payment
     - dev/test options
         - Jesse Pollack will send dev wallet sufficient amount of Goerli ETH (base testnet) + USDC
