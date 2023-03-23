@@ -1,13 +1,12 @@
 import { StyleSheet, Text, View } from "react-native";
-import React, { useState, useEffect } from "react";
-import { Button, Input } from "react-native-elements";
+import React from "react";
+import { Button } from "react-native-elements";
 import { useDispatch, useSelector } from "react-redux";
-import { createWallet, deleteSession } from "../redux/store/users";
+import { deleteSession } from "../redux/store/users";
 
 export default function WalletScreen() {
   const dispatch = useDispatch();
   const { walletData } = useSelector((state) => state.users);
-  const [seedPhrase, setSeedPhrase] = useState("");
 
   return (
     <View style={styles.container}>
