@@ -5,6 +5,7 @@ import SplashScreen from "./src/screens/Splash";
 import HomeScreen from "./src/screens/Home";
 import OnboardScreen from "./src/screens/Onboard";
 import WalletScreen from "./src/screens/Wallet";
+import PayScreen from "./src/screens/Pay";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Provider } from "react-redux";
 import { store } from "./src/redux/store";
@@ -40,6 +41,7 @@ function App() {
           <Tab.Navigator>
             <Tab.Screen name="Home" component={HomeScreen} />
             <Tab.Screen name="Wallet" component={WalletScreen} />
+            <Tab.Screen name="Pay" component={PayScreen} />
           </Tab.Navigator>
         ) : (
           <Stack.Navigator>
