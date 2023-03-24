@@ -19,6 +19,7 @@
     "@reduxjs/toolkit": "^1.9.3",
     "ethers": "5.7.2",
     "expo": "~48.0.6",
+    "expo-barcode-scanner": "^12.3.2",
     "expo-secure-store": "~12.1.1",
     "expo-status-bar": "~1.4.4",
     "react": "18.2.0",
@@ -27,8 +28,10 @@
     "react-native-device-info": "^10.4.0",
     "react-native-elements": "^3.4.3",
     "react-native-get-random-values": "^1.8.0",
+    "react-native-qrcode-svg": "^6.2.0",
     "react-native-safe-area-context": "4.5.0",
     "react-native-screens": "~3.20.0",
+    "react-native-svg": "^13.8.0",
     "react-redux": "^8.0.5"
   },
   "devDependencies": {
