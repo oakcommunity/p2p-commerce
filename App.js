@@ -15,7 +15,7 @@ import { fetchSession } from "./src/redux/store/users";
 export default function AppWrapper() {
   return (
     <Provider store={store}>
-      <App />
+      <PayScreen />
     </Provider>
   );
 }
