@@ -1,7 +1,7 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useState, useEffect } from "react";
 
-const Keypad = ({ number, setState }) => (
+const Keypad = ({ number, setState, imagesrc = null }) => (
   <View
     style={{
       width: 80,
@@ -26,12 +26,19 @@ const Keypad = ({ number, setState }) => (
         justifyContent: "center",
       }}
     >
-      <Text
-        style={{
-          fontSize: 50,
-          fontWeight: "700",
-        }}
-      >{`${number}`}</Text>
+      {imagesrc ? (
+        <Image source={imagesrc}></Image>
+      ) : (
+        <Text
+          style={[
+            {
+              fontSize: 50,
+              fontWeight: "700",
+            },
+            imagesrc ? { color: "#fff" } : null,
+          ]}
+        >{`${number}`}</Text>
+      )}
     </Pressable>
   </View>
 );
@@ -50,7 +57,6 @@ export default function NumericalKeypad({ setStateFunc }) {
       display.pop();
       setDisplay(display);
     }
-    console.log(display.at(-3));
     setStateFunc(display.join(""));
   }, [display]);
 

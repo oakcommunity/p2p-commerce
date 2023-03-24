@@ -11,11 +11,12 @@ import { Keypad } from "../components";
 
 const PayScreen = () => {
   const { height, width } = useWindowDimensions();
-  const [paymentAmount, setPaymentAmount] = useState([0]);
+  const [paymentAmount, setPaymentAmount] = useState([]);
   useEffect(() => {
     if (paymentAmount.length === 0) {
-      setPaymentAmount("0");
+      setPaymentAmount(["0"]);
     }
+    //Add Redux to globally store manual payment amount somewhere here
   }, [paymentAmount]);
   return (
     <SafeAreaView>
@@ -35,9 +36,9 @@ const PayScreen = () => {
         </View>
         {/* End Header */}
         <View style={{ alignItems: "center", top: 100 }}>
-          <Text style={{ fontSize: 60, fontWeight: "700" }}>{`$ ${parseFloat(
-            paymentAmount
-          )}`}</Text>
+          <Text
+            style={{ fontSize: 60, fontWeight: "700" }}
+          >{`$ ${paymentAmount}`}</Text>
         </View>
         {/* End Amount Text */}
         <View style={{ top: 130, alignItems: "center" }}>
