@@ -7,7 +7,7 @@ import {
   View,
 } from "react-native";
 import React, { useState, useEffect } from "react";
-import { Keypad } from "../components";
+
 
 const PayScreen = () => {
   const { height, width } = useWindowDimensions();
@@ -69,7 +69,7 @@ const PayScreen = () => {
         </View>
         {/* End BalanceBox*/}
         <View style={{ height: 370 }}>
-          <Keypad setStateFunc={setPaymentAmount} />
+          <Text> KEYPAD GOES HERE </Text>
         </View>
         {/* End Keypad */}
         <View style={{ alignItems: "center", marginTop: 40 }}>
