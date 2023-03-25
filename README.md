@@ -1,11 +1,11 @@
 # OAK
 
 ## Thanks
-- Big thanks to uniswap wallet repo and all the hardworking contributors of my favorite project in web3
-- https://github.com/Uniswap/wallet
-- I spent more than a few hours in their `package.json` figuring out which integrations to use and saving a lot of lead time on implementation details
+- Big thanks to [uniswap wallet](https://github.com/Uniswap/wallet). I spent more than a few hours in their `package.json` figuring out which integrations to use and saving a lot of lead time on implementation details
 
-- Also thanks to GPT-4 for supercharging my dev lifecycle; some of the more mundane/trivial tasks for utility functions, repo layout, set up, and and menial tasks that still contribute a lot to cognitive load were offloaded to GPT. Probably saved me 10-20 hours of dev time.
+- Big thanks to GPT-4 for helping us save a lot of time (4x more productive)
+
+- Contributors: Ben Kim, Ian, Fred Zaw
 
 ## Getting Started
 - install expo go on mobile app, install expo cli
@@ -24,9 +24,6 @@ React Native + Ethers Context Specific
 Private Key Storage
 - https://docs.expo.dev/versions/latest/sdk/securestore/
 
-"UUID" for Authentication via Device Info
-- https://www.npmjs.com/package/react-native-device-info?activeTab=versions
-
 Mobile App Navigation
 - https://reactnavigation.org/docs/hello-react-navigation
 - https://reactnavigation.org/docs/tab-based-navigation/
@@ -34,12 +31,16 @@ Mobile App Navigation
 State Management
 - https://redux-toolkit.js.org/introduction/getting-started
 
-Number Input 'Calulator App'
-- https://github.com/avinashsivaraman/awesome-react-calculator (fork this codebase)
-
 QR Code Scanner
 - https://www.npmjs.com/package/react-native-qrcode-scanner
 
+User Authentication SMS + Database
+- [twilio sms provider](https://supabase.com/docs/guides/auth/phone-login/twilio) - ben has creds
+- [supabase auth sms](https://supabase.com/docs/guides/getting-started/tutorials/with-expo) - ben has creds
+- [supabase database](https://supabase.com/docs/guides/database) - ben has creds
+
+- Design System
+- [tailwind-lite](https://www.nativewind.dev/)
 ## Feature Work
 
 Phase 1
@@ -58,27 +59,19 @@ Phase 1
         - Wallet Generation from Seed Phrase (done)
         - Delete local wallet store (done)
         - store keys on local device via mobile encrypted storage (keychain) (done)
-    - User Authentication-lite
-        - Fetch Device ID for user auth + access to username / wallet record
+    - Supabase (Auth + Database)
         - username
-    - Phase 1.5
-        - Database
-            - username
-            - public key (wallet address)
-            - device id (user can have multiple device id)
-            - phone number?
-            - email?
+        - public key (wallet address)
+        - phone number (done)
 
 Phase 2
 - Wallet Interactions
     - send USDC + pay MATIC to 0x address (done)
     - name alias look up -> 0x address for payment
-    - dev/test options
-        - Jesse Pollack will send dev wallet sufficient amount of Goerli ETH (base testnet) + USDC
 
 Phase 3
 - Payment UX: make it easy to send USDC
-    - QR Code generation
+    - QR Code generation (done)
     - NFC payment enabled
 
 

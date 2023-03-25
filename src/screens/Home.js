@@ -1,6 +1,13 @@
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Pressable,
+  ScrollView,
+} from "react-native";
 import React, { useEffect, useState } from "react";
-import Config from "react-native-config";
+// import Config from "react-native-config";
 import { getBalances } from "../utils/balanceOf";
 import "react-native-get-random-values";
 import "@ethersproject/shims";
@@ -83,51 +90,98 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Send USDC on Polygon</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={setRecipientAddress}
-        value={recipientAddress}
-        placeholder="Recipient Address"
-      />
-      <TextInput
-        style={styles.input}
-        onChangeText={setAmount}
-        value={amount}
-        keyboardType="numeric"
-        placeholder="Amount"
-      />
-      <Button
-        onPress={() => sendUSDCTransaction(recipientAddress, amount)}
-        title="Send USDC"
-      />
-      <Button onPress={fetchBalances} title="Fetch Balances" />
-      {balances && (
-        <View style={styles.balances}>
-          <Text style={styles.balanceText}>MATIC: {balances.matic}</Text>
-          <Text style={styles.balanceText}>USDC: {balances.usdc}</Text>
+      <ScrollView contentContainerStyle={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          onChangeText={setRecipientAddress}
+          value={recipientAddress}
+          placeholder="Recipient Address"
+        />
+        <TextInput
+          style={styles.input}
+          onChangeText={setAmount}
+          value={amount}
+          keyboardType="numeric"
+          placeholder="Amount"
+        />
+        <View style={styles.buttonContainer}>
+          <Pressable
+            onPress={() => sendUSDCTransaction(recipientAddress, amount)}
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>Send USDC</Text>
+          </Pressable>
+          <Pressable onPress={fetchBalances} style={styles.button}>
+            <Text style={styles.buttonText}>Fetch Balances</Text>
+          </Pressable>
         </View>
-      )}
+        {balances && (
+          <View style={styles.balances}>
+            <Text style={styles.balanceText}>
+              MATIC: {Math.round(balances.matic * 100) / 100}
+            </Text>
+            <Text style={styles.balanceText}>USDC: {balances.usdc}</Text>
+          </View>
+        )}
+      </ScrollView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    flexDirection: "column",
+    alignItems: "stretch",
+    justifyContent: "start",
+    width: "100%",
+    flexGrow: 1,
+    alignSelf: "stretch",
+    textAlign: "center",
   },
   title: {
     fontSize: 24,
     marginBottom: 20,
   },
+  inputContainer: {
+    borderColor: "gray",
+    borderWidth: 1,
+    width: "100%",
+    flexGrow: 0,
+    alignSelf: "stretch",
+    textAlign: "center",
+  },
   input: {
     height: 40,
     borderColor: "gray",
     borderWidth: 1,
-    width: "80%",
-    paddingHorizontal: 10,
+    width: "100%",
+    paddingHorizontal: 20,
     marginBottom: 10,
+    flexGrow: 1,
+    alignSelf: "stretch",
+    textAlign: "center",
+  },
+  button: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 12,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: "black",
+    flexGrow: 0,
+    maxWidth: 200,
+    alignSelf: "stretch",
+    textAlign: "center",
+  },
+  buttonContainer: {
+    paddingHorizontal: 30,
+    rowGap: 15,
+    paddingVertical: 10,
+    alignSelf: "stretch",
+    textAlign: "center",
+  },
+  buttonText: {
+    color: "white",
   },
   balances: {
     marginTop: 20,

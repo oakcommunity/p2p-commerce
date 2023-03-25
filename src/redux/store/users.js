@@ -45,6 +45,7 @@ const userSlice = createSlice({
     loading: false,
     isLoggedIn: false,
     walletData: { address: "", privateKey: "", mnemonic: "" },
+    userData: { phoneNumber: "" },
   }),
   reducers: {},
   extraReducers: (builder) => {
