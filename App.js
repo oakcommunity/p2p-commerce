@@ -7,6 +7,7 @@ import OnboardScreen from "./src/screens/Onboard";
 import WalletScreen from "./src/screens/Wallet";
 import PayScreen from "./src/screens/Pay";
 import QRScreen from "./src/screens/QR";
+import LoginScreen from "./src/screens/Login";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Provider } from "react-redux";
 import { store } from "./src/redux/store";
@@ -42,9 +43,13 @@ function App() {
           <Tab.Navigator>
             <Tab.Screen name="Home" component={HomeScreen} />
             <Tab.Screen name="Wallet" component={WalletScreen} />
+<<<<<<< HEAD
             <Tab.Screen name="Pay" component={PayScreen} />
             <Tab.Screen name="QR" component={QRScreen} />
 
+=======
+            <Tab.Screen name="Login" component={LoginScreen} />
+>>>>>>> 464f3f0 (checkpoint for supabase otp sms auth)
           </Tab.Navigator>
         ) : (
           <Stack.Navigator>
