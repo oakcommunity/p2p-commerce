@@ -39,6 +39,8 @@ User Authentication SMS + Database
 - [supabase auth sms](https://supabase.com/docs/guides/getting-started/tutorials/with-expo) - ben has creds
 - [supabase database](https://supabase.com/docs/guides/database) - ben has creds
 
+- Design System
+- [tailwind-lite](https://www.nativewind.dev/)
 ## Feature Work
 
 Phase 1
