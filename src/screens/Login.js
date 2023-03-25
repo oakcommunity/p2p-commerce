@@ -11,7 +11,7 @@ import { Button, Input } from "react-native-elements";
 import { useDispatch, useSelector } from "react-redux";
 import { supabase } from "../utils/supabase";
 
-export default function WalletScreen() {
+export default function LoginScreen() {
   const dispatch = useDispatch();
   const { walletData } = useSelector((state) => state.users);
   const [phone, setPhone] = useState("");
@@ -42,7 +42,7 @@ export default function WalletScreen() {
   }
 
   return (
-    <View>
+    <View style={styles.container}>
       {!otpLoading ? (
         <>
           <ScrollView style={[styles.verticallySpaced, styles.mt20]}>
@@ -86,8 +86,11 @@ export default function WalletScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 40,
-    padding: 12,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    marginTop: 150,
+    justifyContent: "center",
+    flexDirection: "column",
   },
   verticallySpaced: {
     paddingTop: 4,

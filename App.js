@@ -8,11 +8,14 @@ import WalletScreen from "./src/screens/Wallet";
 import PayScreen from "./src/screens/Pay";
 import QRScreen from "./src/screens/QR";
 import LoginScreen from "./src/screens/Login";
+import ProfileScreen from "./src/screens/Profile";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Provider } from "react-redux";
 import { store } from "./src/redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSession } from "./src/redux/store/users";
+import { Session } from "@supabase/supabase-js";
+import { supabase } from "./src/utils/supabase";
 
 export default function AppWrapper() {
   return (
@@ -34,8 +37,25 @@ function App() {
     dispatch(fetchSession());
   }, []);
 
+  // session + supabase
+  const [session, setSession] = useState();
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      console.log("session get", session);
+      setSession(session);
+    });
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      console.log("session change", session);
+      setSession(session);
+    });
+  }, []);
+
   if (loading) {
     return <SplashScreen />;
+  } else if (!session) {
+    return <LoginScreen />;
   } else {
     return (
       <NavigationContainer>
@@ -43,13 +63,9 @@ function App() {
           <Tab.Navigator>
             <Tab.Screen name="Home" component={HomeScreen} />
             <Tab.Screen name="Wallet" component={WalletScreen} />
-<<<<<<< HEAD
             <Tab.Screen name="Pay" component={PayScreen} />
             <Tab.Screen name="QR" component={QRScreen} />
-
-=======
-            <Tab.Screen name="Login" component={LoginScreen} />
->>>>>>> 464f3f0 (checkpoint for supabase otp sms auth)
+            <Tab.Screen name="Profile" component={ProfileScreen} />
           </Tab.Navigator>
         ) : (
           <Stack.Navigator>
